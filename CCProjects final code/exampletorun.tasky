@@ -1,0 +1,45 @@
+# Basic file and folder operations
+make new folder inside "/tmp" named "tasky_test"
+make new folder inside "/tmp/tasky_test" named "docs"
+make new folder inside "/tmp/tasky_test" named "code"
+
+# Create and place content in files
+place "Hello World from TASKY!" inside "/tmp/tasky_test/hello.txt"
+place "# Sample README\n\nThis is a test project created by TASKY DSL." inside "/tmp/tasky_test/README.md"
+
+# Add content to existing files
+add "This text is appended to the file." at end of "/tmp/tasky_test/hello.txt"
+
+# Create a template file and variables file for demonstration
+place "Dear {{name}},\n\nThank you for your interest in {{product}}.\n\nRegards,\n{{sender}}" inside "/tmp/tasky_test/letter.template"
+place "name=John Doe\nproduct=TASKY DSL\nsender=The TASKY Team" inside "/tmp/tasky_test/variables.txt"
+
+# Use the template to create a new file
+create file from template "/tmp/tasky_test/letter.template" with variables "/tmp/tasky_test/variables.txt"
+
+# Show files in a directory
+show file in "/tmp/tasky_test"
+
+# Count files with specific extension
+count "txt" in "/tmp/tasky_test"
+
+# Write some code files for demonstration
+place "function hello() {\n  console.log('Hello from TASKY');\n}" inside "/tmp/tasky_test/code/example.js"
+place "#include <iostream>\n\nint main() {\n  std::cout << \"Hello from TASKY C++\" << std::endl;\n  return 0;\n}" inside "/tmp/tasky_test/code/example.cpp"
+
+# Rename with prefix
+rename all in "/tmp/tasky_test/code" with prefix "demo_"
+
+# Show files after renaming
+show file in "/tmp/tasky_test/code"
+
+# Create a file and then transform its content
+place "Line 1: Hello\nLine 2: World\nLine 3: From TASKY\nLine 4: DSL System" inside "/tmp/tasky_test/lines.txt"
+transform "/tmp/tasky_test/lines.txt" using regex "Line ([0-9]+): " replace "TASKY Line $1: "
+
+# Remove every nth line
+place "Line 1\nLine 2\nLine 3\nLine 4\nLine 5\nLine 6\nLine 7\nLine 8" inside "/tmp/tasky_test/numbered.txt" 
+remove every 2 lines from "/tmp/tasky_test/numbered.txt"
+
+# Clean up at the end (comment out if you want to inspect the files)
+# remove folder "/tmp/tasky_test"

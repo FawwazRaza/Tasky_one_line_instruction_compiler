@@ -1,0 +1,26 @@
+# Create a file from a template
+create file from template "user_template.template" with variables "user_vars.txt"
+
+# Batch process PDF files
+batch process "pdftoppm -png" with ".pdf" in "/home/user/documents"
+
+# Get statistics of all MP3 files
+stats of "mp3" in "/home/user/music"
+
+# Move all files larger than 1MB
+move all larger than 1000000 in "/home/user/downloads" to "/home/user/large_files"
+
+# Transform file content using a simple pattern replacement
+transform "config.txt" using regex "DEBUG=0" replace "DEBUG=1"
+
+# Remove every 3rd line from a file
+remove every 3 lines from "data.csv"
+
+# Sort files by size
+sort "txt" by size in "/home/user/documents"
+
+# Sort files by date
+sort "jpg" by date in "/home/user/pictures"
+
+# Conditionally move files
+when "log.txt" contain "ERROR" : move to "/home/user/error_logs"
